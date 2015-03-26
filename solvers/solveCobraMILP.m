@@ -59,12 +59,12 @@ function solution = solveCobraMILP(MILPproblem,varargin)
 
 % Markus Herrgard 1/23/07
 % Tim Harrington  05/18/12 Added support for the Gurobi 5.0 solver
-<<<<<<< HEAD
+%<<<<<<< HEAD
 % Ronan (16/07/2013) default MPS parameters are no longer global variables
-=======
+%=======
 % Meiyappan Lakshmanan  11/14/14 Added support for the cplex_direct solver
 % cplex_direct solver accesible through CPLEX m-file and CPLEX C-interface
->>>>>>> 987a38606db2c6c47ed5421155258bb27fd34cbe
+%>>>>>>> 987a38606db2c6c47ed5421155258bb27fd34cbe
 
 %% Process options
 

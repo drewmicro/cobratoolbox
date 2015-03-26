@@ -1,4 +1,5 @@
-function [ newmodel ] = addMetabolite(model,metID,metName,formula,CHEBIID,KEGGId,PubChemID, InChi,Charge, b )
+function model = addMetabolite(model,metID,metName,formula,Charge)
+%function addMetabolite(model,metID,metName,formula,CHEBIID,KEGGId,PubChemID, InChi,Charge, b )
 %addMetabolite adds a Metabolite to the Current Reconstruction
 %
 % newModel = addMetabolite(model,metID,metName,formula,CHEBIID,KEGGId,PubChemID, InChi,Charge, b )
@@ -27,25 +28,25 @@ function [ newmodel ] = addMetabolite(model,metID,metName,formula,CHEBIID,KEGGId
 % Thomas Pfau 15/12/2014
 
 %Convert into cell array
-if ~isa(metID,'cell')
-    metID = {metID};
-end
+%if ~isa(metID,'cell')
+%    metID = {metID};
+%end
 
-if nargin < 10
-    b = zeros(1,numel(metID);
-else
-    if numel(metID) ~= numel(b)
-        fprintf('Inconsistent Argument length (%i) and b(%i)\n',numel(metID),numel(b));
-        return
-    end
-    if ~isa(b,'double')
-        fprintf('Wrong Argument class for b: %s ; should be double\n',class(b));
-        return
-    end
-end
+%if nargin < 10
+%    b = zeros(1,numel(metID));
+%else
+%    if numel(metID) ~= numel(b)
+%        fprintf('Inconsistent Argument length (%i) and b(%i)\n',numel(metID),numel(b));
+%        return
+%    end
+%    if ~isa(b,'double')
+%        fprintf('Wrong Argument class for b: %s ; should be double\n',class(b));
+%        return
+%    end
+%end
 
-if nargin < 9
-    Charge = zeros(1,numel(metID);
+if nargin < 5
+    Charge = zeros(1,numel(metID));
 else
     
     if numel(metID) ~= numel(Charge)
@@ -58,77 +59,77 @@ else
     end
 end
 
-if nargin < 8
-    InChi = cell(1,numel(metID))
-    InChi(:) = {''};
-else
-    if ~isa(InChi,'cell')
-        if ~isa(InChi,'char')
-            fprintf('Wrong Argument class for InChi: %s ; should be char or cell\n',class(InChi));
-            return
-        else
-            InChi = {InChi};
-        end
-    end
-    if numel(metID) ~= numel(InChi)
-        fprintf('Inconsistent Argument length metID (%i) and InChi(%i)\n',numel(metID),numel(InChi));
-        return
-    end
-end
+%if nargin < 8
+%    InChi = cell(1,numel(metID))
+%    InChi(:) = {''};
+%else
+%    if ~isa(InChi,'cell')
+%        if ~isa(InChi,'char')
+%            fprintf('Wrong Argument class for InChi: %s ; should be char or cell\n',class(InChi));
+%            return
+%        else
+%            InChi = {InChi};
+%        end
+%    end
+%    if numel(metID) ~= numel(InChi)
+%        fprintf('Inconsistent Argument length metID (%i) and InChi(%i)\n',numel(metID),numel(InChi));
+%        return
+%    end
+%end
 
-if nargin < 7
-    PubChemID = cell(1,numel(metID))
-    PubChemID(:) = {''};
-else
-    if ~isa(PubChemID,'cell')
-         if ~isa(PubChemID,'char')
-            fprintf('Wrong Argument class for PubChemID: %s ; should be char or cell\n',class(PubChemID));
-            return
-         else
-            PubChemID = {PubChemID};
-         end        
-    end
-    if numel(metID) ~= numel(PubChemID)
-        fprintf('Inconsistent Argument length metID (%i) and PubChemID(%i)\n',numel(metID),numel(PubChemID));
-        return
-    end
-end
+%if nargin < 7
+%    PubChemID = cell(1,numel(metID))
+%    PubChemID(:) = {''};
+%else
+%    if ~isa(PubChemID,'cell')
+%         if ~isa(PubChemID,'char')
+%            fprintf('Wrong Argument class for PubChemID: %s ; should be char or cell\n',class(PubChemID));
+%            return
+%         else
+%            PubChemID = {PubChemID};
+%         end        
+%    end
+%    if numel(metID) ~= numel(PubChemID)
+%        fprintf('Inconsistent Argument length metID (%i) and PubChemID(%i)\n',numel(metID),numel(PubChemID));
+%        return
+%    end
+%end
 
-if nargin < 6
-    KEGGId = cell(1,numel(metID))
-    KEGGId(:) = {''};
-else
-    if ~isa(KEGGId,'cell')
-        if ~isa(KEGGId,'char')
-            fprintf('Wrong Argument class for KEGGId: %s ; should be char or cell\n',class(KEGGId));
-            return
-        else
-            KEGGId = {KEGGId};
-        end
-    end
-    if numel(metID) ~= numel(KEGGId)
-        fprintf('Inconsistent Argument length metID (%i) and KEGGId(%i)\n',numel(metID),numel(KEGGId));
-        return
-    end
-end
+%if nargin < 6
+%    KEGGId = cell(1,numel(metID))
+%    KEGGId(:) = {''};
+%else
+%    if ~isa(KEGGId,'cell')
+%        if ~isa(KEGGId,'char')
+%            fprintf('Wrong Argument class for KEGGId: %s ; should be char or cell\n',class(KEGGId));
+%            return
+%        else
+%            KEGGId = {KEGGId};
+%        end
+%    end
+%    if numel(metID) ~= numel(KEGGId)
+%        fprintf('Inconsistent Argument length metID (%i) and KEGGId(%i)\n',numel(metID),numel(KEGGId));
+%        return
+%    end
+%end
 
-if nargin < 5
-    CHEBIID = cell(1,numel(metID))
-    CHEBIID(:) = {''};
-else
-    if ~isa(CHEBIID,'cell')
-        if ~isa(CHEBIID,'char')
-            fprintf('Wrong Argument class for CHEBIID: %s ; should be char or cell\n',class(CHEBIID));
-            return
-        else
-            CHEBIID = {CHEBIID};
-        end
-    end
-    if numel(metID) ~= numel(CHEBIID)
-        fprintf('Inconsistent Argument length metID (%i) and CHEBIID(%i)\n',numel(metID),numel(CHEBIID));
-        return
-    end    
-end
+%if nargin < 5
+%    CHEBIID = cell(1,numel(metID))
+%    CHEBIID(:) = {''};
+%else
+%    if ~isa(CHEBIID,'cell')
+%        if ~isa(CHEBIID,'char')
+%            fprintf('Wrong Argument class for CHEBIID: %s ; should be char or cell\n',class(CHEBIID));
+%            return
+%        else
+%            CHEBIID = {CHEBIID};
+%        end
+%    end
+%    if numel(metID) ~= numel(CHEBIID)
+%        fprintf('Inconsistent Argument length metID (%i) and CHEBIID(%i)\n',numel(metID),numel(CHEBIID));
+%        return
+%    end    
+%end
 
 if nargin < 4
     formula = cell(1,numel(metID))
@@ -180,26 +181,26 @@ for i = 1:numel(metID)
                 model.metNames{end+1,1} = metName{i} ;                
         %          model.metNames(end) = cellstr(input('Enter complete metabolite name, if available:', 's'));
         end
-        if (isfield(model,'b'))      %Prompts to add missing info if desired
-            model.b(end+1) = b(i);
-        end
+        %if (isfield(model,'b'))      %Prompts to add missing info if desired
+        %    model.b(end+1) = b(i);
+        %end
         if (isfield(model,'metFormulas'))
             model.metFormulas{end+1,1} = formula{i};
             warning(['Metabolite formula for ' metID ' set to ''''']);
         %             model.metFormulas(end) = cellstr(input('Enter metabolite chemical formula, if available:', 's'));
         end
-        if isfield(model,'metChEBIID')
-            model.metChEBIID{end+1,1} = CHEBIID{i};
-        end
-        if isfield(model,'metKEGGID')
-            model.metKEGGID{end+1,1} = KEGGId{i};
-        end
-        if isfield(model,'metPubChemID')
-            model.metPubChemID{end+1,1} = PubChemID{i};
-        end
-        if isfield(model,'metInChIString')
-            model.metInChIString{end+1,1} = InChi{i};
-        end
+        %if isfield(model,'metChEBIID')
+        %    model.metChEBIID{end+1,1} = CHEBIID{i};
+        %end
+        %if isfield(model,'metKEGGID')
+        %    model.metKEGGID{end+1,1} = KEGGId{i};
+        %end
+        %if isfield(model,'metPubChemID')
+        %    model.metPubChemID{end+1,1} = PubChemID{i};
+        %end
+        %if isfield(model,'metInChIString')
+        %    model.metInChIString{end+1,1} = InChi{i};
+        %end
         if isfield(model,'metCharge')
             model.metCharge(end+1,1) = Charge(i);
         end

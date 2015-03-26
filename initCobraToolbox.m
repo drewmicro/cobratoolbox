@@ -41,27 +41,28 @@ end
 if isunix
   addpath('/usr/local/lib/');
 end
-CobraLPSolvers = { 'gurobi5', 'gurobi', 'tomlab_cplex', 'glpk', 'mosek', 'cplx' };
-for CobraLPSolver = CobraLPSolvers
+CobraLPSolver = 'glpk';
+%CobraLPSolvers = { 'gurobi5', 'gurobi', 'tomlab_cplex', 'glpk', 'mosek', 'cplx' };
+%for CobraLPSolver = CobraLPSolvers
     LPsolverOK = changeCobraSolver(char(CobraLPSolver));
     if LPsolverOK
         fprintf('LP solver set to %s successful\n',char(CobraLPSolver));
-    	break;
+%    	break;
     end
-end
+%end
 if ~LPsolverOK
     fprintf('LP solver set failed\n');
 end
 % Define default MILP solver
 %CobraMILPSolver = 'tomlab_cplex';
-%CobraMILPSolver = 'glpk';
-for CobraMILPSolver = { 'gurobi5', 'gurobi', 'tomlab_cplex', 'glpk' }
+CobraMILPSolver = 'glpk';
+%for CobraMILPSolver = { 'gurobi5', 'gurobi', 'tomlab_cplex', 'glpk' }
     MILPsolverOK = changeCobraSolver(char(CobraMILPSolver),'MILP');
     if MILPsolverOK
         fprintf('MILP solver set to %s successful\n',char(CobraMILPSolver));
-        break;
+%        break;
    end 
-end
+%end
 if ~MILPsolverOK
     fprintf('MILP solver set failed\n');
 end
